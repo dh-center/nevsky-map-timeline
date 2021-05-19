@@ -1,0 +1,19 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+.map-container {
+  height: 100vh;
+  width: 100vw;
+}
