@@ -4,15 +4,24 @@
   <meta charset="UTF-8">
   <title>Ямы Невского</title>
   <link rel="stylesheet" href="styles.css">
+  <!-- Scripts for storymap -->
+  <link rel="stylesheet" href="https://cdn.knightlab.com/libs/storymapjs/latest/css/storymap.css">
+  <script type="text/javascript" src="https://cdn.knightlab.com/libs/storymapjs/latest/js/storymap-min.js"></script>
 </head>
 <body>
 <!-- Storymap container -->
-<div id="storymap-container" class="map-container"></div>
+<div class="map-wrapper">
+  <div id="storymap-container" class="map-container">
 
+  </div>
 
-<!-- Scripts for storymap -->
-<link rel="stylesheet" href="https://cdn.knightlab.com/libs/storymapjs/latest/css/storymap.css">
-<script type="text/javascript" src="https://cdn.knightlab.com/libs/storymapjs/latest/js/storymap-min.js"></script>
+</div>
+<div class="timeline">
+  <div class="timeline__line">
+<!--    <div class="timeline__item" style="left: 0%"></div>-->
+  </div>
+</div>
+
 <script>
   // storymap_data can be an URL or a Javascript object
   var storymap_data = 'https://uploads.knightlab.com/storymapjs/41e993704e9d3428bab7f550be86d976/nevsky-color/published.json';
@@ -24,6 +33,54 @@
   window.onresize = function (event) {
     storymap.updateDisplay(); // this isn't automatic
   }
+</script>
+
+
+<script>
+
+  const data = [
+    {
+      startDate: 1221,
+    },
+    {
+      startDate: 1236,
+      endDate: 1240,
+    },
+    {
+      startDate: 1240,
+    },
+    {
+      startDate: 1241,
+    },
+    {
+      startDate: 1242,
+    },
+    {
+      startDate: 1245,
+    }
+  ]
+
+  const min = 1221, max = 1245;
+
+
+  const timeline = document.getElementsByClassName("timeline__line").item(0);
+
+  data.forEach(item => {
+    const node = document.createElement('div');
+    node.className = 'timeline__item';
+    const left =  (10 / 3) * item.startDate - 4060;
+    node.style.left = `${left}%`
+    2
+    if (item.endDate) {
+      const right =  (10 / 3) * item.endDate - 4060;
+      node.style.right = `${100 - right}%`
+    }
+
+    node.dataset.period = item.endDate ? `${item.startDate} — ${item.endDate}`: item.startDate;
+
+    timeline.appendChild(node);
+  })
+
 </script>
 </body>
 </html>
