@@ -14,7 +14,7 @@ body {
 }
 
 .map-wrapper {
-  height: 90vh;
+  height: 80vh;
   width: 100vw;
 }
 
@@ -43,7 +43,7 @@ body {
 }
 
 .timeline {
-  height: 10vh;
+  height: 20vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -58,6 +58,7 @@ body {
 }
 
 .timeline__item {
+  cursor: pointer;
   box-sizing: border-box;
   position: absolute;
   /*display: flex;*/
@@ -76,7 +77,11 @@ body {
   position: absolute;
   font-size: 13px;
   left: 50%;
-  transform: translate(-50%, 10px);
+  transform: translate(calc(-50% + 14px), 14px) rotate(50deg);
   text-align: center;
   white-space: nowrap;
+  /*background: rgba(0,0,0,0.4);*/
+}
+.timeline__item--period::before {
+  transform: translate(calc(-50% + 25px), calc(100% + 20px)) rotate(50deg);
 }

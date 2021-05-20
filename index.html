@@ -93,26 +93,49 @@
     },
     {
       startDate: 1245,
-    }
+    },
+    {
+      startDate: 1247,
+      endDate: 1248,
+    },
+    {
+      startDate: 1248,
+      endDate: 1249,
+    },
+    {
+      startDate: 1252,
+    },
+    {
+      startDate: 1263,
+    },
   ]
 
-  const min = 1221, max = 1245;
+  const min = 1221, max = 1263;
+  const leftMin = 5;
+  const leftMax = 95;
+
+  function f(x) {
+    return ((leftMax - leftMin) * x - min*leftMax + max * leftMin)/(max-min)
+  }
 
 
   const timeline = document.getElementsByClassName("timeline__line").item(0);
 
-  data.forEach(item => {
+  data.forEach((item, index) => {
     const node = document.createElement('div');
-    node.className = 'timeline__item';
-    const left =  (10 / 3) * item.startDate - 4060;
-    node.style.left = `${left}%`
-    2
+    node.className = item.endDate ? 'timeline__item timeline__item--period' :'timeline__item';
+    const left =  f(item.startDate);
+    node.style.left = `${left}%`;
     if (item.endDate) {
-      const right =  (10 / 3) * item.endDate - 4060;
+      const right =  f(item.endDate);
       node.style.right = `${100 - right}%`
     }
 
     node.dataset.period = item.endDate ? `${item.startDate} — ${item.endDate}`: item.startDate;
+
+    node.onclick = () => {
+      storymap.goTo(index + 1)
+    }
 
     timeline.appendChild(node);
   })
