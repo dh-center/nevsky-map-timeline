@@ -15,15 +15,51 @@
 <script type="text/javascript" src="https://cdn.knightlab.com/libs/storymapjs/latest/js/storymap-min.js"></script>
 <script>
   // storymap_data can be an URL or a Javascript object
-  var storymap_data = 'https://uploads.knightlab.com/storymapjs/41e993704e9d3428bab7f550be86d976/nevsky-color/published.json';
+  const storymap_data = 'https://uploads.knightlab.com/storymapjs/41e993704e9d3428bab7f550be86d976/nevsky-color/published.json';
 
   // certain settings must be passed within a separate options object
-  var storymap_options = {};
+  const storymap_options = {};
 
-  var storymap = new VCO.StoryMap('storymap-container', storymap_data, storymap_options);
+  const storymap = new VCO.StoryMap('storymap-container', storymap_data, storymap_options);
   window.onresize = function (event) {
     storymap.updateDisplay(); // this isn't automatic
   }
+
+  const slidesButtons = {
+    10: {
+      text: 'Это кнопка на последнем слайде',
+      url: 'https://vk.com'
+    }
+  }
+
+  const slides = document.getElementsByClassName('vco-slide-content-container');
+
+  const addButtonsToSlides = () => {
+    for (let i = 0; i < slides.length; i++) {
+      if (!slidesButtons[i]) continue;
+      const linkContainer = document.createElement('div');
+      linkContainer.className = 'slide__button-container';
+
+      const slideLink = document.createElement('a');
+      slideLink.innerText = slidesButtons[i].text;
+      slideLink.href = slidesButtons[i].url;
+      slideLink.target = '_blank';
+      slideLink.className = 'slide__button';
+
+      linkContainer.appendChild(slideLink);
+      slides[i].appendChild(linkContainer);
+    }
+  }
+
+  const waitSlidesLoading = () => {
+    if (!slides.length) {
+      setTimeout(waitSlidesLoading, 200);
+    } else {
+      addButtonsToSlides();
+    }
+  }
+
+  waitSlidesLoading();
 </script>
 </body>
 </html>
