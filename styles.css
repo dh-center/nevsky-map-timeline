@@ -69,6 +69,7 @@ body {
   background: black;
   border-radius: 10px;
   transform: translateY(-50%);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .timeline__item::before {
@@ -81,10 +82,6 @@ body {
   text-align: center;
   white-space: nowrap;
   /*background: rgba(0,0,0,0.4);*/
-}
-
-.timeline__item--period {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .timeline__item--period::before {
