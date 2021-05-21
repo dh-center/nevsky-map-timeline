@@ -82,6 +82,11 @@ body {
   white-space: nowrap;
   /*background: rgba(0,0,0,0.4);*/
 }
+
+.timeline__item--period {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .timeline__item--period::before {
   transform: translate(calc(-50% + 25px), calc(100% + 20px)) rotate(50deg);
 }

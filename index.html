@@ -18,7 +18,7 @@
 </div>
 <div class="timeline">
   <div class="timeline__line">
-<!--    <div class="timeline__item" style="left: 0%"></div>-->
+    <!--    <div class="timeline__item" style="left: 0%"></div>-->
   </div>
 </div>
 
@@ -115,7 +115,7 @@
   const leftMax = 95;
 
   function f(x) {
-    return ((leftMax - leftMin) * x - min*leftMax + max * leftMin)/(max-min)
+    return ((leftMax - leftMin) * x - min * leftMax + max * leftMin) / (max - min)
   }
 
 
@@ -123,15 +123,15 @@
 
   data.forEach((item, index) => {
     const node = document.createElement('div');
-    node.className = item.endDate ? 'timeline__item timeline__item--period' :'timeline__item';
-    const left =  f(item.startDate);
+    node.className = item.endDate ? 'timeline__item timeline__item--period' : 'timeline__item';
+    const left = f(item.startDate);
     node.style.left = `${left}%`;
     if (item.endDate) {
-      const right =  f(item.endDate);
+      const right = f(item.endDate);
       node.style.right = `${100 - right}%`
     }
 
-    node.dataset.period = item.endDate ? `${item.startDate} — ${item.endDate}`: item.startDate;
+    node.dataset.period = item.endDate ? `${item.startDate} — ${item.endDate}` : item.startDate;
 
     node.onclick = () => {
       storymap.goTo(index + 1)
