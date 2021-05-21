@@ -121,6 +121,15 @@
 
   const timeline = document.getElementsByClassName("timeline__line").item(0);
 
+  function highlightNode(index) {
+    const children = timeline.children;
+
+    Array.from(children).forEach(child => {
+      child.classList.remove('timeline__item--active')
+    });
+    children[index].classList.add('timeline__item--active')
+  }
+
   data.forEach((item, index) => {
     const node = document.createElement('div');
     node.className = item.endDate ? 'timeline__item timeline__item--period' : 'timeline__item';
@@ -134,17 +143,17 @@
     node.dataset.period = item.endDate ? `${item.startDate} — ${item.endDate}` : item.startDate;
 
     node.onclick = () => {
-      const children = timeline.children;
-
-      Array.from(children).forEach(child => {
-        child.classList.remove('timeline__item--active')
-      });
-      children[index].classList.add('timeline__item--active')
+      highlightNode(index)
       storymap.goTo(index + 1)
     }
 
     timeline.appendChild(node);
   })
+
+  storymap.on('change', (data) => {
+    highlightNode(data.current_slide - 1);
+  })
+
 
 </script>
 </body>
