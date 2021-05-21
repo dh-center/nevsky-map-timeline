@@ -103,3 +103,8 @@ body {
 .timeline__item--period::before {
   transform: translate(calc(-50% + 25px), calc(100% + 20px)) rotate(50deg);
 }
+
+.timeline__item--active {
+  color: #49010f;
+  border-color: #49010f;
+}
